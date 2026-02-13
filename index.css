@@ -48,8 +48,8 @@ p{
 }
 
 .number-key,
-.clear-key,
-.equal-key {
+#clear-key,
+#equal-key {
   padding: 10px 20px;
   font-size: 16px;
 }
