@@ -3,10 +3,17 @@
   padding: 0; 
 }
 
+body{
+  font-family: Arial;
+  display: flex; 
+  height: 100vh;
+  justify-content: center; 
+  align-items: center;
+}
 /* putting borders around temp borders for divs to help with mapping */ 
 #calculator-container {
   border: 2px solid black; 
-  width: 500px; 
+  width: 385px; 
   height: 590px; 
 }
 
@@ -17,10 +24,13 @@
 
 .display{
   border: 2px solid green; 
-  width: 50px;
-  height: 20px; 
+  width: 100px;
+  height: 32px; 
 }
 
+p{
+  font-size: 27px;
+}
 .keyboard-container{
   border: 2px solid brown; 
   height: 450px;
@@ -35,4 +45,16 @@
 .operators-keyboard{
   border: 2px solid orange;
   height: 200px;
+}
+
+.number-key,
+.clear-key,
+.equal-key {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.operator-key{
+  padding: 10px 20px;
+  font-size: 20px;
 }
