@@ -2,3 +2,37 @@
   margin: 0; 
   padding: 0; 
 }
+
+/* putting borders around temp borders for divs to help with mapping */ 
+#calculator-container {
+  border: 2px solid black; 
+  width: 500px; 
+  height: 590px; 
+}
+
+.display-container{
+  border: 2px solid pink; 
+  margin-top: 20px
+}
+
+.display{
+  border: 2px solid green; 
+  width: 50px;
+  height: 20px; 
+}
+
+.keyboard-container{
+  border: 2px solid brown; 
+  height: 450px;
+  margin-top: 20px;
+}
+
+.main-keyboard{
+  border: 2px solid blue; 
+  height: 200px;
+}
+
+.operators-keyboard{
+  border: 2px solid orange;
+  height: 200px;
+}
