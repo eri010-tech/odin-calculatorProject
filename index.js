@@ -44,4 +44,14 @@ function returnOperatorKey(e){
   console.log(typeof operatorChoice); 
 }
 
+function operate(operatorChoice,num1,num2,){
+  if(operatorChoice === "+"){
+    return numsAdd(num1,num2); 
+  }
+}
 
+const additionOperator = {
+  numsAdd: function(num1,num2){
+    return num1 + num2 
+  }
+}
