@@ -80,7 +80,6 @@ function addition(num1 , num2){
   return number1 + number2;
 }
 
-
 // event listener for clearKey will reset the display as well as the global variables 
 
 clearKey.addEventListener('click', clearCalculator); 
@@ -91,3 +90,6 @@ function clearCalculator(){
   num1 = [];
   num2 = []; 
 }
+
+//maybe use equationAnswer instead of just let answer = ... for equalKey!!!! could
+// help with the last bit I need to figure out!
