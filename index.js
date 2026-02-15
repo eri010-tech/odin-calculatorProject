@@ -26,6 +26,8 @@ function returnNumbersPicked(e) {
     num1.push(numberPicked); 
     calculatorDisplay.textContent = num1.join("");
     console.log(`num1: ${num1}`); //temporary
+  } else if(num1.length > 0 && operatorChoice === ""){
+    console.log("it worked"); //fix 
   } else {
     let secondNumberPicked = e.target.textContent;
     num2.push(secondNumberPicked); 
