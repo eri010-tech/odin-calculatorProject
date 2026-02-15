@@ -13,7 +13,6 @@ const operatorKey = document.querySelectorAll(".operator-key");
 let num1 = []
 let operatorChoice = "";  
 let num2 = []
-let equationAnswer 
 
 // event listener for the number keys. the listener function gets both number one and number
 // two, if the condition has been met 
@@ -21,6 +20,7 @@ let equationAnswer
 numberKeys.forEach((numberKey) => numberKey.addEventListener('click',returnNumbersPicked)); 
 
 function returnNumbersPicked(e) {
+
   if(operatorChoice === ""){
     let numberPicked = e.target.textContent; 
     num1.push(numberPicked); 
@@ -32,6 +32,7 @@ function returnNumbersPicked(e) {
     calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice} ${num2.join("")}`; ; 
     console.log(`num2: ${num2}`); //temporary 
   }
+ 
 }
 
 // event listener for the operators key. the listener stores the chosen operator 
@@ -56,6 +57,17 @@ equalKey.addEventListener('click', retrieveAnswer);
 function retrieveAnswer(){
   let answer = operate(operatorChoice, num1, num2); 
   calculatorDisplay.textContent = answer; 
+  console.log(answer); 
+  operatorChoice = ""; 
+  num1 = []; 
+  num2 = []; 
+
+  if(answer >= 0){
+    num1.push(answer); 
+    console.log(num1); 
+    console.log(num2); 
+    console.log("its okay"); 
+  }
 }
 
 // operate function retrieves the answers for each equation and then returns the 
@@ -87,9 +99,22 @@ clearKey.addEventListener('click', clearCalculator);
 function clearCalculator(){
   calculatorDisplay.textContent = " "; 
   operatorChoice = "";
-  num1 = [];
+  equationAnswer = undefined; 
+  num1 = []; 
   num2 = []; 
 }
 
-//maybe use equationAnswer instead of just let answer = ... for equalKey!!!! could
-// help with the last bit I need to figure out!
+/* what I need to work on: the calculator can
+do 5 + 2 = 10 + 2 = ... which is great!
+But what happends when the user doesn't press 
+clear and decides to just start adding new numbers 
+
+5 + 2 = 10 => 7 + 8 = ... 
+
+since the user technically has num1 = [1,0] but no operator 
+and a second number, I need to figure out how to write this 
+in code so that after getting their answer of 10, if they dont
+press an operator next and instead press a random number key,
+the num1 array will be made empty and the new number they press
+will become num1, which starts the process all 
+over again: num1 => operator => num2*/ 
