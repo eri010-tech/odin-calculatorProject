@@ -13,6 +13,7 @@ const operatorKey = document.querySelectorAll(".operator-key");
 let num1 = []
 let operatorChoice = "";  
 let num2 = []
+let nextNewNum = []
 let answer 
 let equationAnswered = "false"; 
 
@@ -22,6 +23,42 @@ let equationAnswered = "false";
 numberKeys.forEach((numberKey) => numberKey.addEventListener('click',returnNumbersPicked)); 
 
 function returnNumbersPicked(e) {
+if (operatorChoice === ""){
+    let numberPicked = e.target.textContent; 
+    num1.push(numberPicked); 
+    calculatorDisplay.textContent = `${num1.join("")}`;
+    console.log(`num1: ${num1}`); //temporary
+  } if (answer >= 0){
+    //let newNumSelec = e.target.textContent; 
+    //num1.push(newNumSelec); 
+    let newNum = e.target.textContent; 
+    nextNewNum.push(newNum); 
+    console.log(true); 
+    console.log(`nextNewNum: ${nextNewNum}`);
+    num1.splice(0,num1.length,nextNewNum); 
+    console.log(`tester: ${num1}`);
+    calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice}`; 
+  } else if (operatorChoice !== ""){
+    let secondNumberPicked = e.target.textContent;
+    num2.push(secondNumberPicked); 
+    calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice} ${num2.join("")}`; ; 
+    console.log(`num2: ${num2}`); //temporary
+    console.log("operator choice isn't blank"); 
+  }
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+  /*
   if(equationAnswered === "true" && operatorChoice === ""){
     let newNumSelec = e.target.textContent; 
     num1.push(newNumSelec); 
@@ -37,7 +74,7 @@ function returnNumbersPicked(e) {
     calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice} ${num2.join("")}`; ; 
     console.log(`num2: ${num2}`); //temporary 
   }
-
+*/ 
 
 
 /*
@@ -81,10 +118,10 @@ function retrieveAnswer(){
   operatorChoice = ""; 
   num1 = []; 
   num2 = []; 
-  equationAnswered = "true"; 
 
   if(answer >= 0){
     num1.push(answer); 
+    equationAnswered = "true"; 
     console.log(num1); 
     console.log(num2); 
     console.log("its okay"); 
@@ -118,11 +155,13 @@ function addition(num1 , num2){
 clearKey.addEventListener('click', clearCalculator); 
 
 function clearCalculator(){
-  calculatorDisplay.textContent = " "; 
+  calculatorDisplay.textContent = ""; 
   operatorChoice = "";
   equationAnswered = "false"; 
   num1 = []; 
   num2 = []; 
+  nextNewNum = []; 
+  answer = undefined; 
 }
 
 /* what I need to work on: the calculator can
