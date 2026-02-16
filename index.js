@@ -15,7 +15,7 @@ let operatorChoice = "";
 let num2 = []
 let nextNewNum = []
 let answer 
-let equationAnswered = "false"; 
+//let equationAnswered = "false"; 
 
 // event listener for the number keys. the listener function gets both number one and number
 // two, if the condition has been met 
@@ -23,12 +23,8 @@ let equationAnswered = "false";
 numberKeys.forEach((numberKey) => numberKey.addEventListener('click',returnNumbersPicked)); 
 
 function returnNumbersPicked(e) {
-if (operatorChoice === ""){
-    let numberPicked = e.target.textContent; 
-    num1.push(numberPicked); 
-    calculatorDisplay.textContent = `${num1.join("")}`;
-    console.log(`num1: ${num1}`); //temporary
-  } if (answer >= 0){
+
+  if (answer >= 0 && operatorChoice === ""){
     //let newNumSelec = e.target.textContent; 
     //num1.push(newNumSelec); 
     let newNum = e.target.textContent; 
@@ -37,7 +33,12 @@ if (operatorChoice === ""){
     console.log(`nextNewNum: ${nextNewNum}`);
     num1.splice(0,num1.length,nextNewNum); 
     console.log(`tester: ${num1}`);
-    calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice}`; 
+    calculatorDisplay.textContent = `${num1}` //${operatorChoice}`; 
+  } if (operatorChoice === "" && answer === undefined){
+    let numberPicked = e.target.textContent; 
+    num1.push(numberPicked); 
+    calculatorDisplay.textContent = `${num1.join("")}`;
+    console.log(`num1: ${num1}`); //temporary
   } else if (operatorChoice !== ""){
     let secondNumberPicked = e.target.textContent;
     num2.push(secondNumberPicked); 
@@ -121,7 +122,7 @@ function retrieveAnswer(){
 
   if(answer >= 0){
     num1.push(answer); 
-    equationAnswered = "true"; 
+   // equationAnswered = "true"; 
     console.log(num1); 
     console.log(num2); 
     console.log("its okay"); 
@@ -157,7 +158,7 @@ clearKey.addEventListener('click', clearCalculator);
 function clearCalculator(){
   calculatorDisplay.textContent = ""; 
   operatorChoice = "";
-  equationAnswered = "false"; 
+  //equationAnswered = "false"; 
   num1 = []; 
   num2 = []; 
   nextNewNum = []; 
@@ -181,16 +182,19 @@ over again: num1 => operator => num2*/
 
 
 let pizza = ["cheese", "fruit", "cake", 2];
-let topping = "onion"; 
 
-console.log(pizza.length); 
+let dessert = ["pudding", "carrotCake"].join("")
+console.log(dessert); 
 
-function pizzaLength (array){
-  if(array.length === 4){
-    console.log(true); 
-  }
-}
-pizzaLength(pizza); 
+pizza.splice(0,pizza.length,dessert)
+
  
-console.log(pizza); 
+console.log(`pizzaArray: ${pizza}`)
+//calculatorDisplay.textContent = `${pizza}`; 
+
+
+
+
+
+
  
