@@ -120,7 +120,7 @@ clearKey.addEventListener('click', clearCalculator);
 function clearCalculator(){
   calculatorDisplay.textContent = " "; 
   operatorChoice = "";
-  equationAnswer = undefined; 
+  equationAnswered = "false"; 
   num1 = []; 
   num2 = []; 
 }
@@ -155,8 +155,3 @@ pizzaLength(pizza);
  
 console.log(pizza); 
  
-/*
-if(num1.length > 0 && operatorChoice === "" && num2.length === 0){
-    console.log(true); 
-  }
-    */ 
