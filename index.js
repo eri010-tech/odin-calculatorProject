@@ -15,7 +15,6 @@ let operatorChoice = "";
 let num2 = []
 let nextNewNum = []
 let answer 
-//let equationAnswered = "false"; 
 
 // event listener for the number keys. the listener function gets both number one and number
 // two, if the condition has been met 
@@ -30,7 +29,7 @@ function returnNumbersPicked(e) {
     console.log(`nextNewNum: ${nextNewNum}`);
     num1.splice(0,num1.length,nextNewNum.join("")); 
     console.log(`tester: ${num1}`); 
-    calculatorDisplay.textContent = `${num1}` //${operatorChoice}`; 
+    calculatorDisplay.textContent = `${num1}` 
   } if (operatorChoice === "" && answer === undefined){
     let numberPicked = e.target.textContent; 
     num1.push(numberPicked); 
@@ -44,37 +43,6 @@ function returnNumbersPicked(e) {
     console.log("operator choice isn't blank"); 
   }
   
-  
-  
-
-
-
-
-
-
-
-
-
-
-  /*
-  if(equationAnswered === "true" && operatorChoice === ""){
-    let newNumSelec = e.target.textContent; 
-    num1.push(newNumSelec); 
-    console.log(num1); 
-  } else if (operatorChoice === ""){
-    let numberPicked = e.target.textContent; 
-    num1.push(numberPicked); 
-    calculatorDisplay.textContent = num1.join("");
-    console.log(`num1: ${num1}`); //temporary
-  } else if (operatorChoice !== ""){
-    let secondNumberPicked = e.target.textContent;
-    num2.push(secondNumberPicked); 
-    calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice} ${num2.join("")}`; ; 
-    console.log(`num2: ${num2}`); //temporary 
-  }
-*/ 
-
-
 /*
   if(operatorChoice === ""){
     let numberPicked = e.target.textContent; 
@@ -120,11 +88,15 @@ function retrieveAnswer(){
 
   if(answer >= 0){
     num1.push(answer); 
-   // equationAnswered = "true"; 
     console.log(num1); 
     console.log(num2); 
-    console.log("its okay"); 
   }
+
+  //have to figure how to handle an answer 
+  // that is negative like 2 - 3 = -1 
+  // this needs to go in the num key listener
+  // need to make a condition for whne the user just presses an operator without
+  // pressing a number first or without there being an answer!!!
 }
 
 // operate function retrieves the answers for each equation and then returns the 
@@ -133,20 +105,49 @@ function retrieveAnswer(){
 function operate(operatorChoice,num1,num2,){
   if(operatorChoice === "+"){
     return addition(num1, num2); 
-  } //make the rest else if for the other operators 
+  } else if (operatorChoice === "−"){
+    return subtraction(num1, num2); 
+  } else if (operatorChoice === "×"){
+    return multiplication(num1, num2); 
+  }
 }
 
 // below are the functions for the addition, subtraction, division, and multiplication
 // operators 
 
 function addition(num1 , num2){
+  let firstNum = convertNum1(num1); 
+  let secondNum = convertNum2(num2); 
+
+  return firstNum + secondNum;
+} 
+
+function subtraction(num1, num2){
+  let firstNum = convertNum1(num1); 
+  let secondNum = convertNum2(num2);
+
+  return firstNum - secondNum;
+}
+
+function multiplication(num1, num2){
+  let firstNum = convertNum1(num1); 
+  let secondNum = convertNum2(num2);
+
+  return firstNum * secondNum;
+}
+
+// these two functions converts array num1 and num2 from strings to numbers 
+
+function convertNum1(num1){
   let numberOneString = num1.join(""); 
   let number1 = Number(numberOneString); 
+  return number1; 
+}
 
+function convertNum2(num2){
   let numberTwoString = num2.join("");
-  let number2 = Number(numberTwoString); 
-
-  return number1 + number2;
+  let number2 = Number(numberTwoString);
+  return number2; 
 }
 
 // event listener for clearKey will reset the display as well as the global variables 
@@ -156,21 +157,8 @@ clearKey.addEventListener('click', clearCalculator);
 function clearCalculator(){
   calculatorDisplay.textContent = ""; 
   operatorChoice = "";
-  //equationAnswered = "false"; 
   num1 = []; 
   num2 = []; 
   nextNewNum = []; 
   answer = undefined; 
 }
-
-let pizza = ["cheese", "fruit", "cake", 2];
-
-let dessert = ["pudding", "carrotCake"].join("")
-console.log(dessert); 
-
-pizza.splice(0,pizza.length,dessert)
-
- 
-console.log(`pizzaArray: ${pizza}`)
-//calculatorDisplay.textContent = `${pizza}`; 
- 
