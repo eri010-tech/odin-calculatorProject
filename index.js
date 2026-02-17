@@ -64,9 +64,16 @@ function returnNumbersPicked(e) {
 operatorKey.forEach((key) => key.addEventListener('click',returnOperatorKey));
 
 function returnOperatorKey(e){
-  let operatorPicked = e.target.textContent; 
-  operatorChoice = operatorPicked; 
-  calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice}`; 
+
+  if(num1.length === 0){
+    calculatorDisplay.textContent = ""; 
+  } else if (num1.length !== 0 && operatorChoice !== "" && num2.length !== 0){ 
+    retrieveAnswer(); 
+  } else if(num1.length !== 0){
+    let operatorPicked = e.target.textContent; 
+    operatorChoice = operatorPicked; 
+    calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice}`; 
+  } 
     
   console.log(`operatorChoice: ${operatorChoice}`); //temporary
   console.log(typeof operatorChoice); //temporary
@@ -91,12 +98,6 @@ function retrieveAnswer(){
     console.log(num1); 
     console.log(num2); 
   }
-
-  //have to figure how to handle an answer 
-  // that is negative like 2 - 3 = -1 
-  // this needs to go in the num key listener
-  // need to make a condition for whne the user just presses an operator without
-  // pressing a number first or without there being an answer!!!
 }
 
 // operate function retrieves the answers for each equation and then returns the 
@@ -162,3 +163,7 @@ function clearCalculator(){
   nextNewNum = []; 
   answer = undefined; 
 }
+
+ //have to figure how to handle an answer 
+  // that is negative like 2 - 3 = -1 
+  // this needs to go in the num key listener
