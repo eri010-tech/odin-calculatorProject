@@ -110,6 +110,8 @@ function operate(operatorChoice,num1,num2,){
     return subtraction(num1, num2); 
   } else if (operatorChoice === "×"){
     return multiplication(num1, num2); 
+  } else if (operatorChoice === "÷"){
+    return division(num1, num2); 
   }
 }
 
@@ -135,6 +137,13 @@ function multiplication(num1, num2){
   let secondNum = convertNum2(num2);
 
   return firstNum * secondNum;
+}
+
+function division(num1, num2){
+  let firstNum = convertNum1(num1);
+  let secondNum = convertNum2(num2); 
+
+ return firstNum / secondNum; 
 }
 
 // these two functions converts array num1 and num2 from strings to numbers 
