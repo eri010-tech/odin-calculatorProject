@@ -25,14 +25,11 @@ numberKeys.forEach((numberKey) => numberKey.addEventListener('click',returnNumbe
 function returnNumbersPicked(e) {
 
   if (answer >= 0 && operatorChoice === ""){
-    //let newNumSelec = e.target.textContent; 
-    //num1.push(newNumSelec); 
-    let newNum = e.target.textContent; 
+    let newNum = e.target.textContent;  
     nextNewNum.push(newNum); 
-    console.log(true); 
     console.log(`nextNewNum: ${nextNewNum}`);
-    num1.splice(0,num1.length,nextNewNum); 
-    console.log(`tester: ${num1}`);
+    num1.splice(0,num1.length,nextNewNum.join("")); 
+    console.log(`tester: ${num1}`); 
     calculatorDisplay.textContent = `${num1}` //${operatorChoice}`; 
   } if (operatorChoice === "" && answer === undefined){
     let numberPicked = e.target.textContent; 
@@ -119,6 +116,7 @@ function retrieveAnswer(){
   operatorChoice = ""; 
   num1 = []; 
   num2 = []; 
+  nextNewNum = []; 
 
   if(answer >= 0){
     num1.push(answer); 
@@ -165,22 +163,6 @@ function clearCalculator(){
   answer = undefined; 
 }
 
-/* what I need to work on: the calculator can
-do 5 + 2 = 10 + 2 = ... which is great!
-But what happends when the user doesn't press 
-clear and decides to just start adding new numbers 
-
-5 + 2 = 10 => 7 + 8 = ... 
-
-since the user technically has num1 = [1,0] but no operator 
-and a second number, I need to figure out how to write this 
-in code so that after getting their answer of 10, if they dont
-press an operator next and instead press a random number key,
-the num1 array will be made empty and the new number they press
-will become num1, which starts the process all 
-over again: num1 => operator => num2*/ 
-
-
 let pizza = ["cheese", "fruit", "cake", 2];
 
 let dessert = ["pudding", "carrotCake"].join("")
@@ -191,10 +173,4 @@ pizza.splice(0,pizza.length,dessert)
  
 console.log(`pizzaArray: ${pizza}`)
 //calculatorDisplay.textContent = `${pizza}`; 
-
-
-
-
-
-
  
