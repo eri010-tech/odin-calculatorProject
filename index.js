@@ -1,8 +1,8 @@
 console.log("sweeting floating in the ether"); 
 
 // creating js variables for HTML elements 
-
-const calculatorDisplay = document.querySelector(".display"); 
+ 
+const calculatorDisplay = document.querySelector(".display")
 const numberKeys = document.querySelectorAll(".number-key"); 
 const clearKey = document.getElementById("clear-key");
 const equalKey = document.getElementById("equal-key");
@@ -28,17 +28,17 @@ function returnNumbersPicked(e) {
     nextNewNum.push(newNum); 
     console.log(`nextNewNum: ${nextNewNum}`); //temporary
     num1.splice(0,num1.length,nextNewNum.join("")); 
-    console.log(`tester: ${num1}`); //temporary
-    calculatorDisplay.textContent = `${num1}` 
+    console.log(`tester: ${num1}`); //temporary 
+    calculatorDisplay.value = `${num1}`; 
   } if (operatorChoice === "" && answer === undefined){
     let numberPicked = e.target.textContent; 
     num1.push(numberPicked); 
-    calculatorDisplay.textContent = `${num1.join("")}`;
+    calculatorDisplay.value = `${num1.join("")}`;
     console.log(`num1: ${num1}`); //temporary
   } else if (operatorChoice !== ""){
     let secondNumberPicked = e.target.textContent;
     num2.push(secondNumberPicked); 
-    calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice} ${num2.join("")}`; ; 
+    calculatorDisplay.value = `${num1.join("")} ${operatorChoice} ${num2.join("")}`; 
     console.log(`num2: ${num2}`); //temporary
     console.log("operator choice isn't blank"); //temporary
   }
@@ -66,13 +66,13 @@ operatorKey.forEach((key) => key.addEventListener('click',returnOperatorKey));
 function returnOperatorKey(e){
 
   if(num1.length === 0){
-    calculatorDisplay.textContent = ""; 
+    calculatorDisplay.value = ""; 
   } else if (num1.length !== 0 && operatorChoice !== "" && num2.length !== 0){ 
     retrieveAnswer(); 
   } else if(num1.length !== 0){
     let operatorPicked = e.target.textContent; 
     operatorChoice = operatorPicked; 
-    calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice}`; 
+    calculatorDisplay.value = `${num1.join("")} ${operatorChoice}`;
   } 
     
   console.log(`operatorChoice: ${operatorChoice}`); //temporary
@@ -88,14 +88,14 @@ function retrieveAnswer(){
   answer = operate(operatorChoice, num1, num2); 
 
   if(answer === Infinity){
-    calculatorDisplay.textContent = "oops ( •̯́ ₃ •̯̀ )"; 
+    calculatorDisplay.value = "oops ( •̯́ ₃ •̯̀ )";
     operatorChoice = "";
     num1 = []; 
     num2 = []; 
     nextNewNum = []; 
     answer = undefined; 
   } else {
-    calculatorDisplay.textContent = answer; 
+    calculatorDisplay.value = answer;  
     console.log(answer); 
     operatorChoice = ""; 
     num1 = []; 
@@ -175,7 +175,7 @@ function convertNum2(num2){
 clearKey.addEventListener('click', clearCalculator); 
 
 function clearCalculator(){
-  calculatorDisplay.textContent = ""; 
+  calculatorDisplay.value = ""; 
   operatorChoice = "";
   num1 = []; 
   num2 = []; 
@@ -196,3 +196,4 @@ console.log(tester2.toFixed(4));
 // if answer contains a decimal/float 
 // then round it first before returning answer, 
 // else just return answer 
+ 
