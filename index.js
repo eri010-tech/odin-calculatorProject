@@ -8,7 +8,7 @@ const clearKey = document.getElementById("clear-key");
 const equalKey = document.getElementById("equal-key");
 const operatorKey = document.querySelectorAll(".operator-key");
 
-// these are the main global variables (they will always start as undefined)
+// these are the main global variables (they will always start as undefined or empty)
 
 let num1 = []
 let operatorChoice = "";  
@@ -26,9 +26,9 @@ function returnNumbersPicked(e) {
   if (answer >= 0 && operatorChoice === ""){
     let newNum = e.target.textContent;  
     nextNewNum.push(newNum); 
-    console.log(`nextNewNum: ${nextNewNum}`);
+    console.log(`nextNewNum: ${nextNewNum}`); //temporary
     num1.splice(0,num1.length,nextNewNum.join("")); 
-    console.log(`tester: ${num1}`); 
+    console.log(`tester: ${num1}`); //temporary
     calculatorDisplay.textContent = `${num1}` 
   } if (operatorChoice === "" && answer === undefined){
     let numberPicked = e.target.textContent; 
@@ -40,7 +40,7 @@ function returnNumbersPicked(e) {
     num2.push(secondNumberPicked); 
     calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice} ${num2.join("")}`; ; 
     console.log(`num2: ${num2}`); //temporary
-    console.log("operator choice isn't blank"); 
+    console.log("operator choice isn't blank"); //temporary
   }
   
 /*
@@ -86,18 +86,28 @@ equalKey.addEventListener('click', retrieveAnswer);
 
 function retrieveAnswer(){
   answer = operate(operatorChoice, num1, num2); 
-  calculatorDisplay.textContent = answer; 
-  console.log(answer); 
-  operatorChoice = ""; 
-  num1 = []; 
-  num2 = []; 
-  nextNewNum = []; 
 
+  if(answer === Infinity){
+    calculatorDisplay.textContent = "oops ( •̯́ ₃ •̯̀)"; 
+    operatorChoice = "";
+    num1 = []; 
+    num2 = []; 
+    nextNewNum = []; 
+    answer = undefined; 
+  } else {
+    calculatorDisplay.textContent = answer; 
+    console.log(answer); 
+    operatorChoice = ""; 
+    num1 = []; 
+    num2 = []; 
+    nextNewNum = []; 
+  }
+  
   if(answer >= 0){
     num1.push(answer); 
     console.log(num1); 
     console.log(num2); 
-  }
+  } 
 }
 
 // operate function retrieves the answers for each equation and then returns the 
@@ -143,7 +153,7 @@ function division(num1, num2){
   let firstNum = convertNum1(num1);
   let secondNum = convertNum2(num2); 
 
- return firstNum / secondNum; 
+  return firstNum / secondNum; 
 }
 
 // these two functions converts array num1 and num2 from strings to numbers 
@@ -176,3 +186,4 @@ function clearCalculator(){
  //have to figure how to handle an answer 
   // that is negative like 2 - 3 = -1 
   // this needs to go in the num key listener
+  console.log("calculatorDisplay.textContent = 'oops ( •̯́ ₃ •̯̀)'"); 
