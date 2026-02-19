@@ -183,3 +183,6 @@ function clearCalculator(){
   nextNewNum = []; 
   answer = undefined; 
 }
+
+// things to still do: add transitinons for the 
+//hover effect and then attempt the extra credit!!!
