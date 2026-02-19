@@ -23,7 +23,7 @@ numberKeys.forEach((numberKey) => numberKey.addEventListener('click',returnNumbe
 
 function returnNumbersPicked(e) {
 
-  if (answer >= 0 || answer < 0 && operatorChoice === ""){
+  if (operatorChoice === "" && answer >= 0 || operatorChoice === "" && answer < 0){
     let newNum = e.target.textContent;  
     nextNewNum.push(newNum); 
     console.log(`nextNewNum: ${nextNewNum}`); //temporary
@@ -186,13 +186,13 @@ function clearCalculator(){
  //have to figure how to handle an answer 
   // that is negative like 2 - 3 = -1 
   // this needs to go in the num key listener
-
+/*
 console.log(Math.round(500.67)); 
 
 let num = 1.5
 let tester2 = 5
 console.log(num.toFixed(4)); 
-console.log(tester2.toFixed(4)); 
+console.log(tester2.toFixed(4)); */ 
 // if answer contains a decimal/float 
 // then round it first before returning answer, 
 // else just return answer 
