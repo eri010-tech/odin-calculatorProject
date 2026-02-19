@@ -77,6 +77,7 @@ function returnOperatorKey(e){
     
   console.log(`operatorChoice: ${operatorChoice}`); //temporary
   console.log(typeof operatorChoice); //temporary
+ 
 }
 
 //event listener for the equal key. when the listener is clicked, the user is given
@@ -182,18 +183,3 @@ function clearCalculator(){
   nextNewNum = []; 
   answer = undefined; 
 }
-
- //have to figure how to handle an answer 
-  // that is negative like 2 - 3 = -1 
-  // this needs to go in the num key listener
-/*
-console.log(Math.round(500.67)); 
-
-let num = 1.5
-let tester2 = 5
-console.log(num.toFixed(4)); 
-console.log(tester2.toFixed(4)); */ 
-// if answer contains a decimal/float 
-// then round it first before returning answer, 
-// else just return answer 
- 
