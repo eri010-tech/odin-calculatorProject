@@ -23,7 +23,7 @@ numberKeys.forEach((numberKey) => numberKey.addEventListener('click',returnNumbe
 
 function returnNumbersPicked(e) {
 
-  if (answer >= 0 && operatorChoice === ""){
+  if (answer >= 0 || answer < 0 && operatorChoice === ""){
     let newNum = e.target.textContent;  
     nextNewNum.push(newNum); 
     console.log(`nextNewNum: ${nextNewNum}`); //temporary
@@ -103,8 +103,8 @@ function retrieveAnswer(){
     nextNewNum = []; 
   }
   
-  if(answer >= 0){
-    num1.push(answer); 
+  if(answer >= 0 || answer < 0){
+    num1.push(answer);  
     console.log(num1); 
     console.log(num2); 
   } 
