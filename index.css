@@ -32,6 +32,7 @@ body{
   justify-content: center; 
   align-items: center; 
   margin-left: 20px;
+  border: 1px solid #a7a6aa;  
   background-color: #e0dfe6;
   border-radius: 16px;
   margin-top: 20px;
@@ -40,6 +41,7 @@ body{
 .display-container:hover{
   width: 305px;
   height: 101px; 
+  box-shadow: 7px 8px 7px rgba(0, 0, 0, 0.25); 
 }
 .display{
   border: 2px solid #adb2ac; 
@@ -92,6 +94,8 @@ body{
   margin-bottom: 10px;
   margin-right: 10px;
   border-style: none;
+  transition: background-color 0.3s,
+              color 0.3s; 
 }
 
 .number-key:hover{
@@ -122,6 +126,7 @@ body{
   background-color: #5d0000; 
   border-style: none;
   margin-bottom: 11px;
+  transition: background-color 0.3s;
 }
 
 .operator-key:hover{
