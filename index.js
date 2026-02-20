@@ -7,6 +7,7 @@ const numberKeys = document.querySelectorAll(".number-key");
 const clearKey = document.getElementById("clear-key");
 const equalKey = document.getElementById("equal-key");
 const operatorKey = document.querySelectorAll(".operator-key");
+const decimalKey = document.getElementById("decimal-key")
 
 // these are the main global variables (they will always start as undefined or empty)
 
@@ -102,6 +103,7 @@ function retrieveAnswer(){
     num1 = []; 
     num2 = []; 
     nextNewNum = []; 
+    decimalKey.addEventListener("click", addDecimal); 
   }
   
   if(answer >= 0 || answer < 0){
@@ -182,7 +184,43 @@ function clearCalculator(){
   num2 = []; 
   nextNewNum = []; 
   answer = undefined; 
+  decimalKey.addEventListener("click", addDecimal); 
+  console.log("clearCal pressed"); 
 }
 
 // things to still do: add transitinons for the 
 //hover effect and then attempt the extra credit!!!
+
+
+decimalKey.addEventListener("click", addDecimal); 
+
+function addDecimal(e){
+  if(operatorChoice === ""){
+    let decimalNumOne = e.target.textContent; 
+    num1.push(decimalNumOne); 
+    calculatorDisplay.value = num1.join(""); 
+    console.log(`num1: ${num1}`); 
+    console.log("decimal clicked");
+    decimalKey.removeEventListener("click", addDecimal)  
+  } else if (operatorChoice === "" && answer === undefined){
+    let decimalNumOneSelec = e.target.textContent; 
+    num1.push(decimalNumOneSelec); 
+    console.log("decimal clicked"); 
+    calculatorDisplay.value = num1.join("");  
+    decimalKey.removeEventListener("click", addDecimal);
+  }  
+  
+
+
+  /* this is for num2, ignore for now
+  if(num2.length === 0){
+    let decimalNumTwo = e.target.textContent; 
+    num2.push(decimalNumTwo); 
+    calculatorDisplay.value = num2;
+    console.log(`num2:${num2}`)
+  } else{
+    console.log("strop"); 
+  }
+
+  */
+}
