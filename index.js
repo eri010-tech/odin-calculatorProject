@@ -195,20 +195,22 @@ function clearCalculator(){
 decimalKey.addEventListener("click", addDecimal); 
 
 function addDecimal(e){
-  if(operatorChoice === ""){
+  if(num1.length === 0 && operatorChoice === ""){
     let decimalNumOne = e.target.textContent; 
     num1.push(decimalNumOne); 
     calculatorDisplay.value = num1.join(""); 
     console.log(`num1: ${num1}`); 
-    console.log("decimal clicked");
+    console.log("decimal 1 clicked");
     decimalKey.removeEventListener("click", addDecimal)  
-  } else if (operatorChoice === "" && answer === undefined){
+  } else if (num1.length > 0 && operatorChoice === "" && answer === undefined){
     let decimalNumOneSelec = e.target.textContent; 
     num1.push(decimalNumOneSelec); 
-    console.log("decimal clicked"); 
+    console.log("decimal 2 clicked"); 
     calculatorDisplay.value = num1.join("");  
     decimalKey.removeEventListener("click", addDecimal);
-  }  
+  } else if(answer >= 0 || answer < 0){
+    decimalKey.removeEventListener("click", addDecimal); 
+  }
   
 
 
