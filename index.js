@@ -59,6 +59,31 @@ function returnNumbersPicked(e) {
  */ 
 }
 
+// extra credit: decimal event listener gives the use the option to add a decimal 
+// to num1 and/or num2 
+
+decimalKey.addEventListener("click", addDecimal); 
+
+function addDecimal(e){
+
+  if(answer === undefined && num1.length >= 0 && operatorChoice === ""){
+    let decimalNumOne = e.target.textContent; 
+    num1.push(decimalNumOne); 
+    calculatorDisplay.value = `${num1.join("")}`; 
+    console.log(`num1: ${num1}`); 
+    console.log("decimal 1 clicked");
+    decimalKey.removeEventListener("click", addDecimal)  
+  } if (operatorChoice !== "" && num2.length >= 0){
+    let decimalNumTwo = e.target.textContent; 
+    num2.push(decimalNumTwo); 
+    calculatorDisplay.value = `${num1.join("")} ${operatorChoice} ${num2.join("")}`;
+    console.log("clicking decimal for num2") 
+    decimalKey.removeEventListener("click", addDecimal);
+  } else if (answer >= 0 || answer < 0){
+    decimalKey.removeEventListener("click", addDecimal);
+  }
+}
+
 // event listener for the operators key. the listener stores the chosen operator 
 // inside of operatorChoice 
 
@@ -74,6 +99,7 @@ function returnOperatorKey(e){
     let operatorPicked = e.target.textContent; 
     operatorChoice = operatorPicked; 
     calculatorDisplay.value = `${num1.join("")} ${operatorChoice}`;
+    decimalKey.addEventListener("click", addDecimal); 
   } 
     
   console.log(`operatorChoice: ${operatorChoice}`); //temporary
@@ -188,42 +214,4 @@ function clearCalculator(){
   console.log("clearCal pressed"); 
 }
 
-// things to still do: add transitinons for the 
-//hover effect and then attempt the extra credit!!!
-
-
-decimalKey.addEventListener("click", addDecimal); 
-
-function addDecimal(e){
-  if(num1.length === 0 && operatorChoice === ""){
-    let decimalNumOne = e.target.textContent; 
-    num1.push(decimalNumOne); 
-    calculatorDisplay.value = num1.join(""); 
-    console.log(`num1: ${num1}`); 
-    console.log("decimal 1 clicked");
-    decimalKey.removeEventListener("click", addDecimal)  
-  } else if (num1.length > 0 && operatorChoice === "" && answer === undefined){
-    let decimalNumOneSelec = e.target.textContent; 
-    num1.push(decimalNumOneSelec); 
-    console.log("decimal 2 clicked"); 
-    calculatorDisplay.value = num1.join("");  
-    decimalKey.removeEventListener("click", addDecimal);
-  } else if(answer >= 0 || answer < 0){
-    decimalKey.removeEventListener("click", addDecimal); 
-  }
-  
-
-
-  /* this is for num2, ignore for now
-  if(num2.length === 0){
-    let decimalNumTwo = e.target.textContent; 
-    num2.push(decimalNumTwo); 
-    calculatorDisplay.value = num2;
-    console.log(`num2:${num2}`)
-  } else{
-    console.log("strop"); 
-  }
-
-  */
-}
- 
+// attempt the last extra credit!!!
