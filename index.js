@@ -7,7 +7,9 @@ const numberKeys = document.querySelectorAll(".number-key");
 const clearKey = document.getElementById("clear-key");
 const equalKey = document.getElementById("equal-key");
 const operatorKey = document.querySelectorAll(".operator-key");
-const decimalKey = document.getElementById("decimal-key")
+const decimalKey = document.getElementById("decimal-key");
+const backspaceKey = document.getElementById("backspace-key"); 
+const cuteBtn = document.getElementById("cute-btn"); 
 
 // these are the main global variables (they will always start as undefined or empty)
 
@@ -44,19 +46,6 @@ function returnNumbersPicked(e) {
     console.log("operator choice isn't blank"); //temporary
   }
   
-/*
-  if(operatorChoice === ""){
-    let numberPicked = e.target.textContent; 
-    num1.push(numberPicked); 
-    calculatorDisplay.textContent = num1.join("");
-    console.log(`num1: ${num1}`); //temporary
-  } else {
-    let secondNumberPicked = e.target.textContent;
-    num2.push(secondNumberPicked); 
-    calculatorDisplay.textContent = `${num1.join("")} ${operatorChoice} ${num2.join("")}`; ; 
-    console.log(`num2: ${num2}`); //temporary 
-  }
- */ 
 }
 
 // extra credit: decimal event listener gives the use the option to add a decimal 
@@ -78,8 +67,6 @@ function addDecimal(e){
     num2.push(decimalNumTwo); 
     calculatorDisplay.value = `${num1.join("")} ${operatorChoice} ${num2.join("")}`;
     console.log("clicking decimal for num2") 
-    decimalKey.removeEventListener("click", addDecimal);
-  } else if (answer >= 0 || answer < 0){
     decimalKey.removeEventListener("click", addDecimal);
   }
 }
@@ -214,3 +201,35 @@ function clearCalculator(){
   console.log("clearCal pressed"); 
 }
 
+// extra credit: event listener for the backspace key 
+
+backspaceKey.addEventListener("click", removeSelection);
+
+function removeSelection(){
+  if(answer === undefined && num1.length >= 0 && operatorChoice === ""){
+    num1.pop(); 
+    calculatorDisplay.value = `${num1.join("")}`;  
+    decimalKey.addEventListener("click", addDecimal); 
+  } else if (num1.length > 0 && num2.length === 0){
+    operatorChoice = ""; 
+    calculatorDisplay.value = `${num1.join("")}`; 
+  } else if(operatorChoice !== "" && num2.length >= 0){
+    num2.pop(); 
+    calculatorDisplay.value = `${num1.join("")} ${operatorChoice} ${num2.join("")}`; 
+    decimalKey.addEventListener("click", addDecimal);
+  }
+}
+
+
+// this is not required for the project...I just wanted to include it :) 
+
+cuteBtn.addEventListener("click", changeText);
+
+function changeText(){
+
+  if(cuteBtn.textContent === "ʕ´•ᴥ•`ʔ"){
+    cuteBtn.textContent = "^._.^ฅ";
+  } else {
+    cuteBtn.textContent = "ʕ´•ᴥ•`ʔ";
+  }
+}
