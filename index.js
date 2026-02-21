@@ -214,4 +214,3 @@ function clearCalculator(){
   console.log("clearCal pressed"); 
 }
 
-// attempt the last extra credit!!!
